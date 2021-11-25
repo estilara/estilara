@@ -31,6 +31,10 @@ html, body {
     font-weight: 700;
 }
 
+#linksPlataforms {
+  color:black;
+}
+
 img {
   width: 100%;
   height: auto;

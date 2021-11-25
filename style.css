@@ -5,7 +5,7 @@
 :root {
     --mainFont:'Open Sans', sans-serif;
     --mainFontSize: 18px;
-    --smallFont: 12px;
+    --smallFont: 13px;
     --largeFont: 25px;
     --fontColor: #FFF;
     --background-color: #000;
@@ -40,6 +40,12 @@ img {
   display: block;
   text-align: center;
   padding-top: 10px;
+}
+
+.infoLogosEN {
+  display: block;
+  text-align: center;
+  font-size: var(--smallFont);
 }
 
 .border {
