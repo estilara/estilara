@@ -7,14 +7,19 @@
     --mainFontSize: 18px;
     --smallFont: 12px;
     --largeFont: 25px;
+    --mobileFont: 15px;
     --fontColor: #FFF;
     --background-color: #000;
     --borderColor: #161b21;
 }
 
+/*MAIN PAGE - MOBILE FIRST*/
+
+@media screen and (max-width: 768px) {
 * {
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 
 html, body {
@@ -24,27 +29,16 @@ html, body {
   font-size: var(--mainFontSize);
 }
 
-#WalkedaMile {
-    background-color: var(--fontColor);
-    color: var(--background-color);
-    padding: 3px;
-    font-weight: 700;
-}
-
-#linksPlataforms {
-  color:black;
-}
-
 img {
-  width: 100%;
   height: auto;
 }
 
-.container {
-  display: flex;
-  padding: 0;
-  justify-content: space-evenly;
-  align-items: center;
+#WalkedaMile {
+  background-color: var(--fontColor);
+  color: var(--background-color);
+  text-align: center;
+  font-weight: 700;
+  padding: 5px;
 }
 
 .infoLogos {
@@ -53,103 +47,114 @@ img {
   padding-top: 10px;
 }
 
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .border {
   border: 1px solid var(--borderColor);
-  height: 93vh;
-  width: 100vh;
-  margin-top: 10px;
-  margin-bottom: 50px;
-  margin-left: 5px;
-  margin-right: 5px;
   border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#borderTitulo {
-    width: 40vh;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-#borderMedia {
-    width: 80%;
-}
-
-#border3D {
-    width: 40vh;
+  padding: 10px;
+  margin-top: 20px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .conTitulo {
-  display: grid;
-  width: 500px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.conMedia {
-    display: grid;
-    width: 500px;
+}
+
+/*MEDIA QUERY*/
+@media screen and (min-width: 768px) {
+  * {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  
+  html, body {
+    background-color: var(--background-color);
+    color: var(--fontColor);
+    font-family: var(--mainFont);
+    font-size: var(--mainFontSize);
+  }
+  
+  img {
+    height: auto;
   }
 
-.con3D {
-  display: grid;
-  width: 500px;
-}
+  #WalkedaMile {
+    color: var(--background-color);
+    font-size: var(--mainFontSize);
+    text-align: center;
+    font-weight: 700;
+    padding: 10px;
+  }
+  
+  .infoLogos {
+    display: block;
+    text-align: center;
+    background-color: var(--fontColor);
+    margin-top: 10px;
+  }
+  
+  .container {
+    display: flex;
+  }
 
-.logos {
-  display: grid;
+  .border {
+  border: 1px solid var(--borderColor);
+  border-radius: 20px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-right: 5px;
+  margin-left: 5px;
+  height: 90vh;
+  display: flex;
   align-items: center;
-  justify-self: center;
-}
+  justify-items: center;
+  }
 
-.Model {
-    display: grid;
-    align-items: center;
-    justify-self: center;
-}
+  .conTitulo {
+  width: 40vh;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
 
-#logo1 {
-  height: 240px;
-  object-fit: contain;
-}
+  #borderTitulo {
+    width: 40vh;
+  }
 
-#logo2 {
-  height: 240px;
-  object-fit: contain;
+  #border3D {
+    width: 50vh;
+  }
+
 }
+  
+
 
 /*FOOTER*/
-
 footer {
-    margin: 0;
+    margin: 0 auto;
     color: var(--background-color);
     background-color: var(--fontColor);
-    font-size: var(--smallFont);
+    font-size: var(--mobileFont);
     position: fixed;
-    bottom: 0;
     width: 100%;
+    bottom: 0;
 }
 
 .links {
     text-align: center;
-    padding: 5px;
+    padding: 8px;
     padding-bottom: 5px;
-}
-
-@media screen and (max-width: 992px) {
-  .body{
-    margin-bottom: 60px;
-  }
-
-  .container{
-  display: grid;
-  width: 95%;
-  }
-
-  .border {
-  height: 50vh;
-  width: 100%;
-  margin: 10px;
-  }
-
 }
