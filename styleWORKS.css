@@ -24,6 +24,13 @@ html, body {
   font-size: var(--mainFontSize);
 }
 
+#WalkedaMile {
+    background-color: var(--fontColor);
+    color: var(--background-color);
+    padding: 3px;
+    font-weight: 700;
+}
+
 img {
   width: 100%;
   height: auto;
@@ -44,10 +51,10 @@ img {
 
 .border {
   border: 1px solid var(--borderColor);
-  height: 97vh;
+  height: 93vh;
   width: 100vh;
   margin-top: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 50px;
   margin-left: 5px;
   margin-right: 5px;
   border-radius: 20px;
@@ -56,12 +63,31 @@ img {
   align-items: center;
 }
 
-.containerL {
+#borderTitulo {
+    width: 40vh;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#borderMedia {
+    width: 80%;
+}
+
+#border3D {
+    width: 40vh;
+}
+
+.conTitulo {
   display: grid;
   width: 500px;
 }
 
-.containerR{
+.conMedia {
+    display: grid;
+    width: 500px;
+  }
+
+.con3D {
   display: grid;
   width: 500px;
 }
@@ -70,6 +96,12 @@ img {
   display: grid;
   align-items: center;
   justify-self: center;
+}
+
+.Model {
+    display: grid;
+    align-items: center;
+    justify-self: center;
 }
 
 #logo1 {
@@ -101,7 +133,10 @@ footer {
 }
 
 @media screen and (max-width: 992px) {
-  
+  .body{
+    margin-bottom: 60px;
+  }
+
   .container{
   display: grid;
   width: 95%;
@@ -110,12 +145,6 @@ footer {
   .border {
   height: 50vh;
   width: 100%;
-  margin: 10px;
-  }
-
-  .containerL, .containerR {
-  width: 90%;
-  height: 30vh;
   margin: 10px;
   }
 
