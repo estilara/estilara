@@ -127,6 +127,26 @@
         
     </script>
     <script>
+        if (window.innerWidth <= 768) {
+            var popup = document.createElement('div');
+            popup.style.position = 'absolute';
+            popup.style.top = '50%';
+            popup.style.left = '50%';
+            popup.style.transform = 'translate(-50%, -50%)';
+            popup.style.backgroundColor = '#767575';
+            popup.style.width = '100%';
+            popup.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+            popup.style.zIndex = '4';
+            popup.innerHTML = '<p style="font-size: 24px; text-align: center;">Flip phone pls and refresh</p>';
+            document.body.appendChild(popup);
+            window.addEventListener("orientationchange", function() {
+                if (window.orientation === 90 || window.orientation === -90) {
+                    popup.style.display = 'none';
+                } else {
+                    popup.style.display = 'block';
+                }
+            }, false);
+        }
         var text = "Everynight the City trembles and it soon forgets";
         var text2 = "Shit is unfolding all around us but we can only feel it, never see it";
         var text3 = "either way, what little I know is just s͎t͎o͎r͎i͎e͎s͎ ͎i͎'͎m͎ ͎t͎o͎l͎d͎... ";
