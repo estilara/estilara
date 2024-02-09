@@ -400,26 +400,6 @@
     </div>
     <div id="commentList"></div>
     <script>
-        if (window.innerWidth <= 768) {
-            var popup = document.createElement('div');
-            popup.style.position = 'absolute';
-            popup.style.top = '50%';
-            popup.style.left = '50%';
-            popup.style.transform = 'translate(-50%, -50%)';
-            popup.style.backgroundColor = '#767575';
-            popup.style.width = '100%';
-            popup.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
-            popup.style.zIndex = '4';
-            popup.innerHTML = '<p style="font-size: 24px; text-align: center;">Flip phone pls</p>';
-            document.body.appendChild(popup);
-            window.addEventListener("orientationchange", function() {
-                if (window.orientation === 90 || window.orientation === -90) {
-                    popup.style.display = 'none';
-                } else {
-                    popup.style.display = 'block';
-                }
-            }, false);
-        }
         var comments = []; // Initialize an array to store comments
         function openPopup(text, url, source) {
             document.getElementById('popupText').innerHTML = text.replace(/\n/g, '<br>').replace(/\n\n/g, '</p><p>');
