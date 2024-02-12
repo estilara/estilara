@@ -1,16 +1,10 @@
-<?php
-    date_default_timezone_set('America/Sao_Paulo');
-    include 'dbh.inc.php';
-    include 'comments.inc.php';
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>* ﾟ｡*･｡. Map</title>
-<style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>* ﾟ｡*･｡. Map</title>
+    <style>
         body {
             margin: 0;
             padding: 0;
@@ -299,7 +293,7 @@
             margin-bottom: 20px;
         }
         #commentForm {
-            text-align: left;
+            text-align: center;
             padding: 10px;
         }
         #commentText {
@@ -317,36 +311,24 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        .commentList {
+        #commentList {
             position: fixed;
             color: yellow;
             bottom: 0;
             left: 0;
+            width: 100%;
             z-index: 3;
             overflow: hidden;
             white-space: nowrap;
             animation: scroll 22s linear infinite;
         }
-        .commentList p {
+        #commentList p {
             display: inline;
-            
+            margin: 0 10px;
         }
         @keyframes scroll {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
-        }
-        .uid {
-            color:#ffffff;
-            margin: 0;
-            margin-left: 8px;
-            margin-right: 2px;
-        }
-        .alias {
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-        .alias input {
-            margin-left: 5px;
         }
     </style>
 </head>
@@ -377,7 +359,7 @@
     <div onclick="openPopup('In the meantime, follow a cardboard apprentice and their magik', 'https://www.tiktok.com/@perfo_archive')">
         <img src="Images/box_item.gif" class="box" id="item" alt="Event Protocolado Item">
     </div>
-    <div onclick="openPopup('Current state of the narrative you are now reading', 'http://estilara.net')">
+    <div onclick="openPopup('Current state of the narrative you are now reading', 'http://127.0.0.1:5500/teste.html')">
         <img src="Images/box_item.gif" class="box2" id="item" alt="Event Protocolado Item">
     </div>
     <div>
@@ -408,25 +390,17 @@
             <button id="readButton" onclick="window.location.href='https://www.example.com'">Enter Ꮛ𝓿𝓮ɳt</button>
         </div>
     </div>
-
-    <div id='commentPopup'>
-        <button onclick='closePopup()' id='exit'>x</button>
-        <?php
-        echo "<form  method='POST' action='".setComments($conn)."' id='commentForm'>
-                <div class='alias'>Alias:<input type='text' name='uid' value='' required='required'></div>
-                <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
-                <textarea name='message' id='commentText' rows='1' cols='50' maxlength='50' placeholder='Tell us...'></textarea>
-                <br>
-                <input name='commentSubmit' type='submit' value='Submit'>
-            </form>";
-        ?>
+    <div id="commentPopup">
+        <button onclick="closePopup()" id="exit">x</button>
+        <form id="commentForm">
+            <textarea id="commentText" rows="1" cols="50" placeholder="Tell us..."></textarea>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
     </div>
-
-    <div class="commentList">
-        <?php getComments($conn); ?>
-    </div>
-    
+    <div id="commentList"></div>
     <script>
+        var comments = []; // Initialize an array to store comments
         function openPopup(text, url, source) {
             document.getElementById('popupText').innerHTML = text.replace(/\n/g, '<br>').replace(/\n\n/g, '</p><p>');
             document.getElementById('popup').style.display = 'block';
@@ -454,6 +428,35 @@
         }
         function openCommentPopup() {
             document.getElementById('commentPopup').style.display = 'block';
+        }
+        document.getElementById('commentForm').onsubmit = function(event) {
+            event.preventDefault();
+            var comment = document.getElementById('commentText').value;
+            // Here you can add your code to submit the comment
+            document.getElementById('commentPopup').style.display = 'none';
+            comments.push(comment); // Add the comment to the array
+            var commentList = document.getElementById('commentList');
+            var newComment = document.createElement('p');
+            newComment.textContent = comment;
+            newComment.style.color = '#ffff00'; // Display the comment in yellow
+            commentList.appendChild(newComment);
+            // Display all comments in the bottom center of the page
+            var commentText = comments.join(', '); // Join all comments in the array
+            document.getElementById('commentList').textContent = commentText;
+            // Save the comments to local storage
+            localStorage.setItem('comments', JSON.stringify(comments));
+            // Clear the comment text after submission
+            document.getElementById('commentText').value = '';
+        }
+        // Load comments from local storage on page load
+        window.onload = function() {
+            var storedComments = JSON.parse(localStorage.getItem('comments'));
+            if (storedComments) {
+                comments = storedComments;
+                var commentList = document.getElementById('commentList');
+                var commentText = comments.join(', '); // Join all comments in the array
+                commentList.textContent = commentText;
+            }
         }
         
         document.querySelectorAll('.blackcircle, .blackcircle2, .box').forEach(function(element) {
@@ -513,10 +516,24 @@
                 }
             }
         });
-        
-        if (window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.href)
-        }
+        document.querySelectorAll('.blackcircle, .blackcircle2').forEach(function(element) {
+            var audio;
+            element.onmouseover = function() {
+                document.querySelector('.cityQuote').src = 'Images/blackcircle_quote.png';
+                audio = new Audio('Sounds/mic-distortion.mp3');
+                audio.play().catch(function(error) {
+                    console.log('Failed to play audio: ' + error);
+                });
+            }
+            element.onmouseout = function() {
+                document.querySelector('.cityQuote').src = 'Images/city_quote.png';
+                if(audio) {
+                    audio.pause();
+                    audio.currentTime = 0;
+                }
+            }
+        });
+       
         </script>
      </body>  
      </body>  
