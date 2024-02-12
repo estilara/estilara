@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/jpg" href="favicon_estilara.png"/>
+    <title>* ﾟ｡*･｡. Intro</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        #videoBG {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -100;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        #eventText {
+            position: fixed;
+            top: 30%;
+            left: 0;
+            width: fit-content;
+            color: yellow;
+            text-align: left;
+            transform: translateY(-50%);
+            font-size: 24px;
+            animation: fadeIn 2s ease-in-out forwards;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            padding-left: 20px;
+            opacity: 0; /* Start invisible */
+            display: none; /* Start not displayed */
+        }
+        #eventText2 {
+            position: fixed;
+            top: 58%;
+            left: 60%;
+            width: 350px;
+            color: yellow;
+            text-align: left;
+            transform: translateY(-50%);
+            font-size: 18px;
+            animation: fadeIn 2s ease-in-out forwards;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            padding-left: 20px;
+            opacity: 0; /* Start invisible */
+            display: none; /* Start not displayed */
+        }
+        #eventText3 {
+            position: fixed;
+            top: 80%;
+            left: 40%;
+            width: fit-content;
+            color: #ffff00;
+            text-align: left;
+            transform: translateY(-50%);
+            font-size: 22px;
+            animation: fadeIn 2s ease-in-out forwards;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            padding-left: 20px;
+            opacity: 0; /* Start invisible */
+            display: none; /* Start not displayed */
+        }
+        #yellowCircle {
+            position: fixed;
+            top: 48%;
+            left: 46%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            border: 2px solid yellow;
+            animation: fadeIn 1s ease-in-out forwards;
+            border-radius: 50%;
+            display: none; /* Start not displayed */
+            cursor: pointer; /* Make the yellow circle clickable */
+        }
+        #arrowImage {
+            position: fixed;
+            width: 50px;
+            top: 48%;
+            left: 52%;
+            transform: translate(-50%, -50%);
+            animation: fadeIn 1s ease-in-out forwards;
+            display: none; /* Start not displayed */
+        }
+    </style>
+</head>
+<body>
+    <video autoplay no-loop muted playsinline id="videoBG">
+        <source src="Images/inside.mp4" type="video/mp4">
+    </video>
+    <div id="eventText"></div>
+    <div id="eventText2"></div>
+    <div id="eventText3"></div>
+    <div id="yellowCircle"></div>
+    <img id="arrowImage" src="Images/arrow.png">
+    <script>
+        document.getElementById('videoBG').onended = function() {
+            document.getElementById('eventText3').style.display = 'block'
+    
+        };
+
+        document.getElementById('videoBG').addEventListener('timeupdate', function() {
+            if (this.currentTime >= this.duration - 7) {
+                document.getElementById('eventText').style.display = 'block'; // Make the text visible
+            };
+            if (this.currentTime >= this.duration - .5) {
+                document.getElementById('eventText2').style.display = 'block'; // Make the text visible
+            }
+        });
+        document.getElementById('yellowCircle').onclick = function() {
+            window.location.href = 'estilara/menu.php'; // Load page testepage2.html on click
+        };
+        setTimeout(function() {
+            document.getElementById('arrowImage').style.display = 'block';
+            document.getElementById('yellowCircle').style.display = 'block'; // Display the arrow image after 30s
+        }, 13000);
+        
+    </script>
+    <script>
+        var text = "Everynight the City trembles and it soon forgets";
+        var text2 = "Shit is unfolding all around us but we can only feel it, never see it";
+        var text3 = "either way, what little I know is just s͎t͎o͎r͎i͎e͎s͎ ͎i͎'͎m͎ ͎t͎o͎l͎d͎... ";
+        var i = 0;
+        var i2 = 0;
+        var i3 = 0;
+        var speed = 60; /* The speed/duration of the effect in milliseconds */
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("eventText").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            } else {
+                typeWriter2();
+            }
+        }
+        function typeWriter2() {
+            if (i2 < text2.length) {
+                document.getElementById("eventText2").innerHTML += text2.charAt(i2);
+                i2++;
+                setTimeout(typeWriter2, speed);
+            } else {
+                typeWriter3();
+            }
+        }
+        function typeWriter3() {
+            if (i3 < text3.length) {
+                document.getElementById("eventText3").innerHTML += text3.charAt(i3);
+                i3++;
+                setTimeout(typeWriter3, speed);
+            }
+        }
+        typeWriter();
+    </script>
+    
+</body>
+</html>
